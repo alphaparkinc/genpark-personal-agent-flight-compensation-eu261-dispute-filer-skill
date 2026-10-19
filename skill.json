@@ -1,0 +1,83 @@
+{
+  "name": "genpark-personal-agent-flight-compensation-eu261-dispute-filer-skill",
+  "title": "Flight Disruption EU261 & DOT Compensation Dispute Filer Skill",
+  "version": "1.0.0",
+  "description": "Airline flight delay, cancellation, and baggage mishandling statutory compensation arbiter, EU261/UK261 and US DOT rule evaluator, extraordinary circumstances weather validator, and automated legal demand generator. Built for GenPark (https://www.genpark.ai).",
+  "homepage": "https://www.genpark.ai",
+  "organization": {
+    "name": "GenPark Inc.",
+    "url": "https://www.genpark.ai",
+    "linkedin": "https://www.linkedin.com/company/92955550"
+  },
+  "mcp_version": "2024-11-05",
+  "category": "personal-agent",
+  "tools": [
+    {
+      "name": "evaluate_statutory_delay_compensation",
+      "description": "Evaluate flight delay eligibility under EU261/UK261 regulation based on flight distance (km), arrival delay minutes, and airline defense pretext.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "flight_number": {
+            "type": "string"
+          },
+          "departure_airport_iata": {
+            "type": "string"
+          },
+          "arrival_airport_iata": {
+            "type": "string"
+          },
+          "flight_distance_km": {
+            "type": "number"
+          },
+          "arrival_delay_minutes": {
+            "type": "integer"
+          },
+          "airline_claimed_reason": {
+            "type": "string",
+            "enum": [
+              "technical_defect",
+              "crew_shortage",
+              "air_traffic_control",
+              "severe_weather",
+              "strike"
+            ]
+          }
+        },
+        "required": [
+          "flight_number",
+          "flight_distance_km",
+          "arrival_delay_minutes",
+          "airline_claimed_reason"
+        ]
+      }
+    },
+    {
+      "name": "compile_formal_eu261_demand_letter",
+      "description": "Generate a legally binding formal demand letter with precedent European Court of Justice (ECJ) citations dismissing technical defect defenses.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "passenger_name": {
+            "type": "string"
+          },
+          "booking_reference": {
+            "type": "string"
+          },
+          "airline_legal_entity": {
+            "type": "string"
+          },
+          "claim_amount_eur": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "passenger_name",
+          "booking_reference",
+          "airline_legal_entity",
+          "claim_amount_eur"
+        ]
+      }
+    }
+  ]
+}
